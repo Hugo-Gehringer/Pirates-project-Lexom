@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RessourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/ressources', [RessourceController::class, 'index']);
 
-Route::get('/ressources', function () {
-    return view('Ressources.ressources');
-});
+Route::get('/ressources/fromShip/{ship:id}',  [RessourceController::class, 'showRessourcesFromShip']);
+Route::get('/ressources/create/{ship:id?}', [RessourceController::class, 'create'])->name('ressources.create');
+Route::get('/ressources/edit/{ressource:id?}', [RessourceController::class, 'edit'])->name('ressources.edit');
+Route::post('/ressources/store', [RessourceController::class, 'store'])->name('ressources.store');;
+Route::post('/ressources/store', [RessourceController::class, 'update'])->name('ressources.update');;
+
+//Route::get('/ressources', function () {
+//    return view('Ressources.ressources');
+//});
 
 Auth::routes();
 

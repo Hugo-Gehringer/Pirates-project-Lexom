@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('quantity');
             $table->integer('type');
+            $table->foreignIdFor(\App\Models\Ship::class);
             $table->timestamps();
         });
     }

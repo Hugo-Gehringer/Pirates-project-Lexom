@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ressource;
+use App\Models\Ship;
 use Illuminate\Http\Request;
 
 class RessourceController extends Controller
@@ -12,15 +13,24 @@ class RessourceController extends Controller
      */
     public function index()
     {
-        return view('Ressources.ressources');
+        $ressources = Ressource::all();
+        return view('Ressources.ressources')->with('ressources', $ressources);
+    }
+
+    public function showRessourcesFromShip(Ship $ship)
+    {
+        $ressources = $ship->ressources();
+        return view('Ressources.ressourcesPerShip')->with('ressources', $ressources)
+            ->with('ship', $ship);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Ship $ship = null)
     {
-        //
+        $ships = Ship::select('id','name')->get()->pluck('name','id');
+        return view('Ressources.newRessource')->with('ships', $ships)->with("ship",$ship);
     }
 
     /**
@@ -28,7 +38,20 @@ class RessourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'quantity' => 'required|min:1',
+            'type' => 'required',
+            'ship_id' => 'required'
+        ], [
+            'name.required' => 'Veuillez entrer un nom de ressource',
+            'quantity.required' => 'Veuillez entrer une quantité',
+            'type.required' => 'Veuillez choisir un type de ressource.',
+            'ship_id.required' => 'Veuillez choisir un navire.'
+        ]);
+        Ressource::create($validatedData);
+
+        return back()->with('success', '');
     }
 
     /**
@@ -44,7 +67,12 @@ class RessourceController extends Controller
      */
     public function edit(Ressource $ressource)
     {
-        //
+        $ships = Ship::select('id','name')->get()->pluck('name','id');
+        return view('Ressources.editRessource')
+            ->with('ressource', $ressource)
+            ->with('ships',$ships)
+            ->with('ship',$ressource->ship)
+            ;
     }
 
     /**
@@ -52,7 +80,9 @@ class RessourceController extends Controller
      */
     public function update(Request $request, Ressource $ressource)
     {
-        //
+        $validated = $request->validate([
+        ]);
+        Ressource::where('id',$ressource->id)->update($validated);
     }
 
     /**
