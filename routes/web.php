@@ -23,7 +23,7 @@ Route::get('/ressources/fromShip/{ship:id}',  [RessourceController::class, 'show
 Route::get('/ressources/create/{ship:id?}', [RessourceController::class, 'create'])->name('ressources.create');
 Route::get('/ressources/edit/{ressource:id?}', [RessourceController::class, 'edit'])->name('ressources.edit');
 Route::post('/ressources/store', [RessourceController::class, 'store'])->name('ressources.store');;
-Route::post('/ressources/store', [RessourceController::class, 'update'])->name('ressources.update');;
+Route::post('/ressources/update', [RessourceController::class, 'update'])->name('ressources.update');;
 
 //Route::get('/ressources', function () {
 //    return view('Ressources.ressources');

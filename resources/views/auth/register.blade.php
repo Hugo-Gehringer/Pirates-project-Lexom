@@ -11,19 +11,19 @@
                             <div class="card-body p-5 text-center">
                                 <div class="mb-md-5 mt-md-4">
                                     <h1>Créer un compte</h1>
-                                    <form method="POST" action="{{ route('register') }}">
+                                    <form method="POST" action="{{ route('register.create') }}">
                                         @csrf
                                         <div class="row mt-3">
                                             <div class="form-group form-control-lg col-md-6">
                                                 <label for="name" class="col-md-4 col-form-label">{{ __('Nom') }}</label>
-                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required  autofocus>
                                                 @error('name')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                 @enderror
                                             </div>
                                             <div class="form-group form-control-lg col-md-6">
                                                 <label for="firstname" class="col-md-4 col-form-label">{{ __('Prénom') }}</label>
-                                                <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required autocomplete="firstname" autofocus>
+                                                <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" name="firstname" value="{{ old('firstname') }}" required  autofocus>
                                                 @error('firstname')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                 @enderror
@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="row mt-3">
                                             <div class="form-group form-control-lg col-md-12">
-                                                <label for="physicalDescription" class="col-md-4 col-form-label">{{ __('Descritption physique') }}</label>
+                                                <label for="physicalDescription" class="col-md-4 col-form-label">{{ __('Description physique') }}</label>
                                                 <textarea id="physicalDescription" rows="4" type="physicalDescription" class="form-control @error('physicalDescription') is-invalid @enderror" name="physicalDescription"  required autocomplete="physicalDescription">{{ old('physicalDescription') }}</textarea>
                                                 @error('physicalDescription')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
@@ -86,9 +86,7 @@
                                         </div>
                                         <div class="row mt-5">
                                             <div class="">
-                                                <button type="submit" class="btn btn-lg btn-primary">
-                                                    {{ __('Créer un compte') }}
-                                                </button>
+                                                <button type="submit" class="btn btn-lg btn-primary">{{ __('Créer un compte') }}</button>
                                             </div>
                                         </div>
                                     </form>
@@ -100,15 +98,6 @@
             </div>
         </section>
     </form>
-        @if($errors->any())
-            <div class="row collapse">
-                <ul class="alert-box warning radius">
-                    @foreach($errors->all() as $error)
-                        <li> {{ $error }} </li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 </div>
 
 @endsection
