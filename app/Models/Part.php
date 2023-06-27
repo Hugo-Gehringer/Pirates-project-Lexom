@@ -10,6 +10,9 @@ class Part extends Model
     use HasFactory;
 
     public function ships(){
-        return $this->belongsToMany(Part::class, 'parts_ships', 'ship_id', 'parts_id');
+        return $this->belongsToMany(Ship::class, 'part_ship', 'parts_id', 'ships_id')
+            ->withPivot('condition');
+//        return $this->belongsToMany(Part::class, 'part_ship', 'ships_id', "parts_id");
+
     }
 }

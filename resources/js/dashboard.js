@@ -1,28 +1,36 @@
 /* bar chart */
 import Chart from 'chart.js/auto';
 import colors from "tailwindcss/colors.js";
+import {data} from "autoprefixer";
 
-console.log("bi")
+
 var chBar = document.getElementById("chBar");
+let parts =  JSON.parse(chBar.getAttribute('data-parts'))
+console.log((parts))
+let valueArray = [];
+let labelArray = [];
+parts.forEach(function(part) {
+    // do something
+    labelArray.push(part.name);
+    valueArray.push(part.pivot.condition);
+});
+
 if (chBar) {
     new Chart(chBar, {
         type: 'bar',
         data: {
-            labels: ["S", "M", "T", "W", "T", "F", "S"],
+            labels: labelArray,
             datasets: [{
-                data: [80, 10, 80, 12, 29, 50, 30],
+                label: 'état en pourcentage',
+                data: valueArray,
                 backgroundColor: colors[0]
             },]
         },
         options: {
             legend: {
-                display: false
+                text: "état"
             },
             scales: {
-                xAxes: [{
-                    barPercentage: 0.4,
-                    categoryPercentage: 0.5
-                }],
                 y: {
                     beginAtZero: true,
                     max: 100

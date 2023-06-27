@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ship_part', function (Blueprint $table) {
-            $table->unsignedBiginteger('parts_id')->unsigned();
-            $table->unsignedBiginteger('ships_id')->unsigned();
+        Schema::create('part_ship', function (Blueprint $table) {
+            $table->foreignId('parts_id')->constrained();
+            $table->foreignId('ships_id')->constrained();
             $table->integer('condition');
-
-            $table->foreign('parts_id')->references('id')
-                ->on('parts')->onDelete('cascade');
-            $table->foreign('ships_id')->references('id')
-                ->on('ships')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ship_part');
+        Schema::dropIfExists('part_ship');
     }
 };

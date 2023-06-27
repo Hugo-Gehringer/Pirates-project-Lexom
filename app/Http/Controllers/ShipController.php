@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Part;
+use App\Models\PartShip;
+use App\Models\Ressource;
 use App\Models\Ship;
 use Illuminate\Http\Request;
 
@@ -20,15 +23,26 @@ class ShipController extends Controller
      */
     public function create()
     {
-        //
+        return view('Ship.newShip');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,)
     {
-        //
+        $parts = Part::select('id','name')->get();
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'woodType' => 'required',
+        ], [
+            'name.required' => 'Veuillez entrer un nom de bateau',
+            'type.required' => 'Veuillez choisir un type de bois.',
+        ]);
+        $ship = Ship::create($validatedData);
+        foreach ($parts as $part){
+            $ship->parts()->attach($part, ['condition'=>rand(50,100)]);
+        }
     }
 
     /**
