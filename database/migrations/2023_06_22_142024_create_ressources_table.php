@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Ship;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('quantity');
             $table->integer('type');
-            $table->foreignIdFor(\App\Models\Ship::class);
+            $table->foreignIdFor(Ship::class);
             $table->timestamps();
         });
     }

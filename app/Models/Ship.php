@@ -37,5 +37,13 @@ class Ship extends Model
         return round($shipCondition/count($parts),2);
     }
 
+    public function pirates(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
 
+    public function treasures(): HasMany
+    {
+        return $this->hasMany(Treasure::class);
+    }
 }

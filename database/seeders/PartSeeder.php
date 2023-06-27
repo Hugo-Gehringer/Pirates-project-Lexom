@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Part;
+use App\Models\Ship;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
@@ -22,5 +25,20 @@ class PartSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ]);
         }
+        Ship::factory(5)->create();
+
+        $parts = Part::all();
+        $ships = Ship::all();
+
+        $ships->each(function ($ship) use ($parts) {
+            foreach ($parts as $part){
+                $ship->parts()->attach($part, ['condition'=>rand(50,100)]);
+            }
+        });
+
+        User::factory(40)->create();
+
+
+
     }
 }
