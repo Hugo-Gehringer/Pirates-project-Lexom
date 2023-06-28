@@ -27,6 +27,7 @@ class HomeController extends Controller
     {
         $user = auth()->user();
         $ship = $user->ship;
+        $user->roles();
         return view('home')->with('ship',$ship);
     }
 }

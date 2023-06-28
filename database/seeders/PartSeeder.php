@@ -11,6 +11,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PartSeeder extends Seeder
 {
@@ -38,7 +40,37 @@ class PartSeeder extends Seeder
             }
         });
 
-        User::factory(40)->create();
+        $users = User::factory(40)->create();
+
+//        $role = Role::create(['name' => 'Admin']);
+//
+//        $permissions = Permission::pluck('id','id')->all();
+//
+//        $role->syncPermissions($permissions);
+//
+//        $users->each(function ($user) use ($role) {
+//            $user->assignRole([$role->id]);
+//        });
+
+//
+        $roleSailor = Role::create(['name' => 'sailor']);
+        $permissions = Permission::pluck('id','id')->all();
+
+        $roleSailor->syncPermissions($permissions);
+
+        $users = User::factory(40)->create();
+        $users->each(function ($user) use ($roleSailor) {
+            $user->assignRole([$roleSailor->id]);
+        });
+
+        $roleCaptain = Role::create(['name' => 'captain']);
+        $permissions = Permission::pluck('id','id')->all();
+        $roleCaptain->syncPermissions($permissions);
+
+        $ships->each(function ($ship) use ($roleCaptain) {
+            $captain = User::factory()->create(['ship_id'=>$ship->id]);
+            $captain->assignRole([$roleCaptain->id]);
+        });
 
         Ressource::factory(50)->create();
 

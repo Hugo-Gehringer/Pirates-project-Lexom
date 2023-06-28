@@ -42,3 +42,7 @@ Route::post('/ship/update', [ShipController::class, 'update'])->name('ship.updat
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

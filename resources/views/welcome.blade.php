@@ -16,7 +16,7 @@
     <h1 class="mt-5 text-center">
         @guest
             <span class="fw-bold">
-                Vous devez être connecter pour accèder aux tableau de bord
+                Vous devez être connecté pour accèder aux tableau de bord
             </span>
 
             <div class="row mt-5">

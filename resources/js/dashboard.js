@@ -27,7 +27,6 @@ if (chBar) {
             },]
         },
         options: {
-            indexAxis: 'y',
             legend: {
                 text: "état"
             },

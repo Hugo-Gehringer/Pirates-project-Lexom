@@ -47,9 +47,9 @@ class Ship extends Model
         return $this->hasMany(Treasure::class);
     }
 
-    public function amountTreasure(): HasMany
+    public function amountTreasure(): int
     {
-        $treasures = $this->treasures();
+        $treasures = $this->treasures;
         $amountTreasure = 0;
         foreach ($treasures as $treasure){
             $amountTreasure += $treasure->price;
