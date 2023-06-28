@@ -25,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $ship = Ship::find(1);
+        $user = auth()->user();
+        $ship = $user->ship;
         return view('home')->with('ship',$ship);
     }
 }

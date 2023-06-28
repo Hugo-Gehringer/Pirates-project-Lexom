@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Part;
+use App\Models\Ressource;
 use App\Models\Ship;
+use App\Models\Treasure;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -38,7 +40,9 @@ class PartSeeder extends Seeder
 
         User::factory(40)->create();
 
+        Ressource::factory(50)->create();
 
+        Treasure::factory(50)->create();
 
     }
 }

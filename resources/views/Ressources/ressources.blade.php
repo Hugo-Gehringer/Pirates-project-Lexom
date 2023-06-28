@@ -22,17 +22,7 @@
                     <td>
                         {{ config('constants.ressources_type')[$ressource->type] }}
                     </td>
-
-{{--                    <td class="text-center">--}}
-{{--                        <form name="checkState" method="post" action="#">--}}
-{{--                            <input class="form-check-input" type="checkbox" name="checkBoxState" id="checkBoxState" data-idcontactForm="{{ contactForm.id }}">--}}
-{{--                        </form>--}}
-{{--                    </td>--}}
                 </tr>
-{{--            @empty--}}
-{{--                <tr>--}}
-{{--                    <td colspan="5">Aucun formulaire à traiter</td>--}}
-{{--                </tr>--}}
             @endforeach
             </tbody>
         </table>

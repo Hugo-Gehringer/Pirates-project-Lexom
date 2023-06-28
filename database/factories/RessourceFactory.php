@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Ship;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class RessourceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->word(),
+            'quantity' => rand(1,50),
+            'ship_id' => Ship::all()->random()->id,
+            'type' => rand(10,13)
         ];
     }
 }

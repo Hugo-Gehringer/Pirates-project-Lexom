@@ -27,6 +27,7 @@ if (chBar) {
             },]
         },
         options: {
+            indexAxis: 'y',
             legend: {
                 text: "état"
             },
@@ -34,6 +35,9 @@ if (chBar) {
                 y: {
                     beginAtZero: true,
                     max: 100
+                },
+                x: {
+                    position: 'top'
                 }
             }
         }

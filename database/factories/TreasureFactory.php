@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Ship;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class TreasureFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->word(),
+            'description' => fake()->text(),
+            'weight' => rand(5,30),
+            'price' => fake()->randomNumber(4),
+            'condition' => rand(50,52),
+            'ship_id' => Ship::all()->random()->id,
         ];
     }
 }
