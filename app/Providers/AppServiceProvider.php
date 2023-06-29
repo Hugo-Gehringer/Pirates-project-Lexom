@@ -23,5 +23,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('captain', function () {
             return auth()?->user()?->hasRole('captain') === true;
         });
+
+        Blade::if('isCook', function () {
+            return auth()?->user()?->isCook();
+        });
     }
 }

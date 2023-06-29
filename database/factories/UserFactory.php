@@ -26,6 +26,7 @@ class UserFactory extends Factory
             'password' => 'test', // password
             'pseudo' => fake()->name,
             'physicalDescription' => fake()->text,
+            'specialty' => rand(150,153),
             'firstname' => fake()->firstName,
             'age' => rand(20,60),
             'ship_id' => Ship::all()->random()->id,

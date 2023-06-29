@@ -54,14 +54,25 @@
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="form-group form-control-lg col-md-6">
+                                            <div class="form-group form-control-lg col-md-4">
                                                 <label for="age" class="col-md-4 col-form-label">{{ __('Age') }}</label>
                                                 <input id="age" type="number" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required >
                                                 @error('age')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                                 @enderror
                                             </div>
-                                            <div class="form-group form-control-lg col-md-6">
+                                            <div class="form-group form-control-lg col-md-4">
+                                                <label for="ship_id" class="col-md-4 col-form-label">{{ __('Navire') }}</label>
+                                                <select id="ship_id" class="form-select" name="ship_id">
+                                                    @foreach($ships as $id => $ship)
+                                                        <option value="{{$id}}">{{$ship}}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('ship_id')
+                                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group form-control-lg col-md-4">
                                                 <label for="specialty" class="col-md-4 col-form-label">{{ __('Spécialité') }}</label>
                                                 <select id="specialty" class="form-select" name="specialty">
                                                     @foreach(config('constants.users_specialty') as $key => $specialty)

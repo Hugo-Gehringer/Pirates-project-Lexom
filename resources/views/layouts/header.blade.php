@@ -16,6 +16,16 @@
                     @endif
                 @else
                     <li class="nav-item">
+                        <a class="nav-link -danger">
+                            Bonjour {{auth()->user()->name}}
+                        </a>
+                    </li>
+                @endguest
+            </ul>
+            @guest()
+            @else
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
                         <a class="nav-link -danger"
                            href="{{ route('logout') }}"
                            onclick="event.preventDefault();
@@ -26,8 +36,8 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                         @csrf
                     </form>
-                @endguest
-            </ul>
+                </ul>
+            @endguest
         </div>
     </div>
 </nav>

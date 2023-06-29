@@ -41,6 +41,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $guard_name = 'web';
+
     /**
      * The attributes that should be cast.
      *
@@ -54,5 +56,10 @@ class User extends Authenticatable
     public function ship(): BelongsTo
     {
         return $this->belongsTo(Ship::class);
+    }
+
+    public function isCook(): bool
+    {
+        return $this->specialty === config('constants.users_specialty_cook');
     }
 }

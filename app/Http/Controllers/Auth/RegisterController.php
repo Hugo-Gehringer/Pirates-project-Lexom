@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ship;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -42,6 +44,16 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function showRegistrationForm()
+    {
+        $ships = Ship::select('id','name')->get()->pluck('name','id');
+        return view('auth.register')->with('ships', $ships)->with("ship",$ships);
+    }
+
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -52,7 +64,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:2', 'confirmed'],
+            'physicalDescription' => ['required', 'string'],
+            'age' => ['required', 'numeric'],
+            'pseudo' => ['required', 'string'],
+            'firstname' => ['required', 'string'],
+            'specialty' => ['required', 'numeric'],
+            'ship_id' => ['required', 'numeric'],
         ]);
     }
 
@@ -68,6 +86,12 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
+            'physicalDescription' => $data['physicalDescription'],
+            'age' => $data['age'],
+            'pseudo' => $data['pseudo'],
+            'firstname' => $data['firstname'],
+            'specialty' => $data['specialty'],
+            'ship_id' => $data['ship_id'],
+        ])->assignRole('sailor');
     }
 }

@@ -7,10 +7,10 @@ return [
         12 => 'Viande',
         13 => 'Légume',
     ],
-    'parts_condition'=> [
+    'treasures_condition'=> [
         50 => 'Usée',
         51 => 'Neuf',
-        52 => 'Endomagée',
+        52 => 'Abimé',
     ],
     'ships_woodType'=> [
         100 => 'Noyer',
@@ -24,6 +24,7 @@ return [
         153 => 'Combattant',
     ],
     'users_specialty_recruit' => 150,
+    'users_specialty_cook' => 151,
 
     'user_type' => ['Captain', 'Sailor'],
 ]

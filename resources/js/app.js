@@ -1,4 +1,5 @@
 import './bootstrap';
+import '../css/app.css';
 
 require('@fortawesome/fontawesome-free/js/all.js');
 
