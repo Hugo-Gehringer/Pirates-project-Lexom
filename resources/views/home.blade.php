@@ -33,15 +33,21 @@
             <div class="card">
                 <div class="card-header text-center">
                     Liste des matelots
+                    @captain
+                        <a class="btn btn-info" href="{{ route('user.create', $ship) }}">Ajouter</a>
+                    @endcaptain
                 </div>
                 <div class="card-body">
                     <table class="table table-light">
                         <thead class="table-secondary">
                         <tr>
-                            <th class="col-md-4">Nom</th>
-                            <th class="col-md-4">Spécialitée</th>
+                            <th class="col-md-2">Nom</th>
+                            <th class="col-md-2">Spécialitée</th>
                             <th class="col-md-2">mail</th>
-                            <th class="col-md-2">age</th>
+                            <th class="col-md-1">age</th>
+                            @captain
+                                <th class="col-md-5">Action</th>
+                            @endcaptain
                         </tr>
                         </thead>
                         <tbody>
@@ -58,7 +64,17 @@
                             <td>{{ $pirate->email }}</td>
 
                             <td>{{ $pirate->age }}</td>
-                            </tr>
+                            @captain
+                                <td>
+                                    <form action="{{ route('user.destroy',$pirate->id) }}" method="POST">
+                                        <a class="btn btn-sm btn-warning" href="{{ route('user.edit', $pirate) }}">Modifier</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            @endcaptain
+                        </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -142,7 +158,7 @@
                                         <a class="btn btn-sm btn-warning" href="{{ route('treasures.edit.captain', $treasure) }}">Modifier</a>
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
                                     </form>
                                 </td>
                             </tr>

@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\ShipController;
 use App\Http\Controllers\TreasureController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,8 +37,15 @@ Route::get('/treasures/create/{ship:id?}', [TreasureController::class, 'create']
 Route::get('/treasures/edit/{treasure:id?}', [TreasureController::class, 'edit'])->name('treasures.edit');
 Route::get('/treasures/edit/captain/{treasure:id?}', [TreasureController::class, 'captainEdit'])->name('treasures.edit.captain');
 Route::post('/treasures/store', [TreasureController::class, 'store'])->name('treasures.store');;
-Route::patch('/treasures/update/{treasure:id?}', [TreasureController::class, 'update'])->name('treasures.update');;
-Route::delete('/treasures/delete/{treasure:id?}', [TreasureController::class, 'destroy'])->name('treasures.destroy');;
+Route::patch('/treasures/update/{treasure:id?}', [TreasureController::class, 'update'])->name('treasures.update');
+Route::delete('/treasures/delete/{treasure:id?}', [TreasureController::class, 'destroy'])->name('treasures.destroy');
+
+Route::get('/user/create/{ship:id?}', [UserController::class, 'create'])->name('user.create');
+Route::get('/user/edit/{user:id?}', [UserController::class, 'edit'])->name('user.edit');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');;
+Route::patch('/user/update/{user:id?}', [UserController::class, 'update'])->name('user.update');;
+Route::delete('/user/delete/{user:id?}', [UserController::class, 'destroy'])->name('user.destroy');
+
 
 Route::get('/ship/create', [ShipController::class, 'create'])->name('ship.create');
 Route::get('/ship/edit/{ship:id?}', [ShipController::class, 'edit'])->name('ship.edit');
