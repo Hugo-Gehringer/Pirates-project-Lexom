@@ -51,7 +51,7 @@ class RessourceController extends Controller
         ]);
         Ressource::create($validatedData);
 
-        return back()->with('success', '');
+        return redirect()->route('home');
     }
 
     /**
@@ -112,6 +112,6 @@ class RessourceController extends Controller
     public function destroy(Ressource $ressource)
     {
         $ressource->delete();
-        return redirect()->route('home')->with('success','Product deleted successfully');
+        return redirect()->route('home')->with('success','Ressource deleted successfully');
     }
 }

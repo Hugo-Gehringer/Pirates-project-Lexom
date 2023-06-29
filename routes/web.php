@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RessourceController;
 use App\Http\Controllers\ShipController;
+use App\Http\Controllers\TreasureController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,15 +32,17 @@ Route::post('/ressources/store', [RessourceController::class, 'store'])->name('r
 Route::patch('/ressources/update/{ressource:id?}', [RessourceController::class, 'update'])->name('ressources.update');;
 Route::delete('/ressources/delete/{ressource:id?}', [RessourceController::class, 'destroy'])->name('ressources.destroy');;
 
+Route::get('/treasures/create/{ship:id?}', [TreasureController::class, 'create'])->name('treasures.create');
+Route::get('/treasures/edit/{treasure:id?}', [TreasureController::class, 'edit'])->name('treasures.edit');
+Route::get('/treasures/edit/captain/{treasure:id?}', [TreasureController::class, 'captainEdit'])->name('treasures.edit.captain');
+Route::post('/treasures/store', [TreasureController::class, 'store'])->name('treasures.store');;
+Route::patch('/treasures/update/{treasure:id?}', [TreasureController::class, 'update'])->name('treasures.update');;
+Route::delete('/treasures/delete/{treasure:id?}', [TreasureController::class, 'destroy'])->name('treasures.destroy');;
+
 Route::get('/ship/create', [ShipController::class, 'create'])->name('ship.create');
 Route::get('/ship/edit/{ship:id?}', [ShipController::class, 'edit'])->name('ship.edit');
 Route::post('/ship/store', [ShipController::class, 'store'])->name('ship.store');;
 Route::post('/ship/update', [ShipController::class, 'update'])->name('ship.update');;
-
-
-//Route::get('/ressources', function () {
-//    return view('Ressources.ressources');
-//});
 
 Auth::routes();
 

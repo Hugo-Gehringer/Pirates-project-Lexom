@@ -11,8 +11,12 @@
         {!! $errors->first("name",'<span class="invalid-feedback">:message</span>') !!}
     </div>
     <div class="form-group form-control-lg col-md-6">
-        {!! Form::text("quantity",isset($ressource) ? $ressource->quantity : old('quantity'), ['class' => 'form-control'.($errors->has('ship_id') ? ' is-invalid' : null),'placeholder' => 'Quantité']) !!}
+        {!! Form::number("quantity",isset($ressource) ? $ressource->quantity : old('quantity'), ['class' => 'form-control'.($errors->has('ship_id') ? ' is-invalid' : null),'placeholder' => 'Quantité']) !!}
         {!! $errors->first("quantity",'<span class="invalid-feedback">:message</span>') !!}
+    </div>
+    <div class="form-group form-control-lg col-md-6">
+        {!! Form::select('type',config('constants.ressources_type'), (isset($ressource) ? $ressource->type : null), ['class' =>'form-select'. ($errors->has('type') ? ' is-invalid' : null),'placeholder' => 'Choisir un Type de ressource']) !!}
+        {!! $errors->first("type",'<span class="invalid-feedback">:message</span>') !!}
     </div>
     @if (isset($isCookEdit) or auth()?->user())
         <div class="form-group form-control-lg col-md-6">
@@ -25,13 +29,6 @@
             {!! $errors->first("ship_id",'<span class="invalid-feedback">:message</span>') !!}
         </div>
     @endif
-    <div class="form-group form-control-lg col-md-6">
-        {!! Form::select('type',config('constants.ressources_type'), (isset($ressource) ? $ressource->type : null), ['class' =>'form-select'. ($errors->has('type') ? ' is-invalid' : null),'placeholder' => 'Choisir un Type de ressource']) !!}
-        {!! $errors->first("type",'<span class="invalid-feedback">:message</span>') !!}
-    </div>
 </div>
-@if($errors->any())
-    {!! implode('', $errors->all('<div>:message</div>')) !!}
-@endif
 <button type="submit" class="mt-3 btn btn-secondary">Confirmer</button>
 {!! Form::close() !!}

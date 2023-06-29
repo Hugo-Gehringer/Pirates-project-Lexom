@@ -22,6 +22,7 @@ return [
         151 => 'Cuisinier',
         152 => 'Voleur',
         153 => 'Combattant',
+        154 => 'Ingénieur',
     ],
     'users_specialty_recruit' => 150,
     'users_specialty_cook' => 151,

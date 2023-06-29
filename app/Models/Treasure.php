@@ -9,7 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Treasure extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'name',
+        'price',
+        'weight',
+        'description',
+        'condition',
+        'ship_id',
+    ];
     public function ship(): BelongsTo
     {
         return $this->belongsTo(Ship::class);

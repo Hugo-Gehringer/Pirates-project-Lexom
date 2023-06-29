@@ -69,7 +69,9 @@
             <div class="card">
                 <div class="card-header text-center">
                     Liste des ressources
-                    <a class="btn btn-info" href="{{ route('ressources.create') }}">Ajouter</a>
+                    @isCook
+                        <a class="btn btn-info" href="{{ route('ressources.create') }}">Ajouter</a>
+                    @endisCook
                 </div>
                 <div class="card-body">
                     <table class="table table-light">
@@ -113,7 +115,7 @@
             <div class="card">
                 <div class="card-header text-center">
                     Liste des Trésors - total : {{$ship->amountTreasure()}} Pièces d'or
-                    <a class="btn btn-primary">Ajouter</a>
+                    <a class="btn btn-info" href="{{ route('treasures.create') }}">Ajouter</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-light">
@@ -136,8 +138,12 @@
                                     {{ config('constants.treasures_condition')[$treasure->condition] }}
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-warning">Modifier</a>
-                                    <a class="btn btn-sm btn-danger">Supprimer</a>
+                                    <form action="{{ route('treasures.destroy',$treasure->id) }}" method="POST">
+                                        <a class="btn btn-sm btn-warning" href="{{ route('treasures.edit.captain', $treasure) }}">Modifier</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
