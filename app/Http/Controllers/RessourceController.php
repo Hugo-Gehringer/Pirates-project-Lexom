@@ -75,14 +75,35 @@ class RessourceController extends Controller
             ;
     }
 
+    public function cookEdit(Ressource $ressource)
+    {
+        $ships = Ship::select('id','name')->get()->pluck('name','id');
+        return view('Ressources.editRessource')
+            ->with('ressource', $ressource)
+            ->with('ships',$ships)
+            ->with('isCookEdit', true)
+            ->with('ship',$ressource->ship)
+            ;
+    }
+
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Ressource $ressource)
     {
         $validated = $request->validate([
+            'name' => 'required',
+            'quantity' => 'required|min:1',
+            'type' => 'required',
+            'ship_id' => 'required'
+        ],[
+        'name.required' => 'Veuillez entrer un nom de ressource',
+            'quantity.required' => 'Veuillez entrer une quantité',
+            'type.required' => 'Veuillez choisir un type de ressource.',
+            'ship_id.required' => 'Veuillez choisir un navire.'
         ]);
         Ressource::where('id',$ressource->id)->update($validated);
+        return redirect()->route('home');
     }
 
     /**
@@ -90,6 +111,7 @@ class RessourceController extends Controller
      */
     public function destroy(Ressource $ressource)
     {
-        //
+        $ressource->delete();
+        return redirect()->route('home')->with('success','Product deleted successfully');
     }
 }

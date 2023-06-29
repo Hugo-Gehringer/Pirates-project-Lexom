@@ -26,8 +26,10 @@ Route::get('/ressources/fromShip/{ship:id}',  [RessourceController::class, 'show
 
 Route::get('/ressources/create/{ship:id?}', [RessourceController::class, 'create'])->name('ressources.create');
 Route::get('/ressources/edit/{ressource:id?}', [RessourceController::class, 'edit'])->name('ressources.edit');
+Route::get('/ressources/edit/cook/{ressource:id?}', [RessourceController::class, 'cookEdit'])->name('ressources.edit.cook');
 Route::post('/ressources/store', [RessourceController::class, 'store'])->name('ressources.store');;
-Route::post('/ressources/update', [RessourceController::class, 'update'])->name('ressources.update');;
+Route::patch('/ressources/update/{ressource:id?}', [RessourceController::class, 'update'])->name('ressources.update');;
+Route::delete('/ressources/delete/{ressource:id?}', [RessourceController::class, 'destroy'])->name('ressources.destroy');;
 
 Route::get('/ship/create', [ShipController::class, 'create'])->name('ship.create');
 Route::get('/ship/edit/{ship:id?}', [ShipController::class, 'edit'])->name('ship.edit');

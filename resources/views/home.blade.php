@@ -10,6 +10,8 @@
                     {{ __('Bienvenue sur le Tableau de bord') }}
                     @captain
                         - Capitaine du {{$ship->name}}
+                    @else
+                        - Matelot -  {{ auth()?->user()?->specialty ? config('constants.users_specialty')[auth()?->user()?->specialty] :''}}
                     @endcaptain
                 </div>
             </div>
@@ -36,20 +38,26 @@
                     <table class="table table-light">
                         <thead class="table-secondary">
                         <tr>
-                            <th class="col-md-5">Nom</th>
-                            <th class="col-md-5">Spécialitée</th>
+                            <th class="col-md-4">Nom</th>
+                            <th class="col-md-4">Spécialitée</th>
+                            <th class="col-md-2">mail</th>
                             <th class="col-md-2">age</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($ship->pirates as $pirate)
                         <tr>
-                                <td>{{ $pirate->name }} {{$pirate->firstname}}
-                                </td>
-                                <td>
-                                    {{ $pirate->specialty ? config('constants.users_specialty')[$pirate->specialty] :''}}
-                                </td>
-                                <td>{{ $pirate->age }}</td>
+                            <td>{{ $pirate->name }} {{$pirate->firstname}}
+                                @if($pirate->hasrole('captain'))
+                                    <i class="fa-solid fa-star"></i>
+                                @endif
+                            </td>
+                            <td>
+                                {{ $pirate->specialty ? config('constants.users_specialty')[$pirate->specialty] :''}}
+                            </td>
+                            <td>{{ $pirate->email }}</td>
+
+                            <td>{{ $pirate->age }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -61,6 +69,7 @@
             <div class="card">
                 <div class="card-header text-center">
                     Liste des ressources
+                    <a class="btn btn-info" href="{{ route('ressources.create') }}">Ajouter</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-light">
@@ -84,8 +93,12 @@
                                 </td>
                                 @isCook
                                     <td>
-                                        <a class="btn btn-sm btn-warning">Modifier</a>
-                                        <a class="btn btn-sm btn-danger">Supprimer</a>
+                                        <form action="{{ route('ressources.destroy',$ressource->id) }}" method="POST">
+                                            <a class="btn btn-sm btn-warning" href="{{ route('ressources.edit.cook', $ressource) }}">Modifier</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
                                     </td>
                                 @endisCook
                             </tr>
