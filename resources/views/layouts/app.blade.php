@@ -12,6 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/8ba505c79e.js"></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <script src="path/to/chartjs/dist/chart.min.js"></script>
+    <script src="path/to/chartjs-plugin-annotation/dist/chartjs-plugin-annotation.min.js"></script>
     @vite(['resources/js/app.js'])
 </head>
 <body>

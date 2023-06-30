@@ -3,6 +3,9 @@ import Chart from 'chart.js/auto';
 import colors from "tailwindcss/colors.js";
 import {data} from "autoprefixer";
 
+import annotationPlugin from 'chartjs-plugin-annotation';
+
+Chart.register(annotationPlugin);
 
 var chBar = document.getElementById("chBar");
 let parts =  JSON.parse(chBar.getAttribute('data-parts'))
@@ -37,6 +40,19 @@ if (chBar) {
                 },
                 x: {
                     position: 'top'
+                }
+            },
+            plugins: {
+                annotation: {
+                    annotations: {
+                        box1: {
+                            // Indicates the type of annotation
+                            type: 'line',
+                            yMin: 40,
+                            yMax: 40,
+                            backgroundColor: 'rgba(255, 99, 132, 0.25)'
+                        }
+                    }
                 }
             }
         }
