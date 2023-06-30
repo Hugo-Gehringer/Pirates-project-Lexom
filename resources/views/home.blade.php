@@ -36,6 +36,7 @@
                     @captain
                         <a class="btn btn-info" href="{{ route('user.create', $ship) }}">Ajouter</a>
                     @endcaptain
+                    <a class="btn btn-warning float-end" href="{{ route('users.export', $ship) }}">Export User Data</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-light">

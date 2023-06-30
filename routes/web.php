@@ -46,11 +46,12 @@ Route::post('/user/store', [UserController::class, 'store'])->name('user.store')
 Route::patch('/user/update/{user:id?}', [UserController::class, 'update'])->name('user.update');;
 Route::delete('/user/delete/{user:id?}', [UserController::class, 'destroy'])->name('user.destroy');
 
-
 Route::get('/ship/create', [ShipController::class, 'create'])->name('ship.create');
 Route::get('/ship/edit/{ship:id?}', [ShipController::class, 'edit'])->name('ship.edit');
 Route::post('/ship/store', [ShipController::class, 'store'])->name('ship.store');;
-Route::post('/ship/update', [ShipController::class, 'update'])->name('ship.update');;
+Route::post('/ship/update', [ShipController::class, 'update'])->name('ship.update');
+
+Route::get('/user/export/{ship:id}', [UserController::class, 'export'])->name('users.export');
 
 Auth::routes();
 

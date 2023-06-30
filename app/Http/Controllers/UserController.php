@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportUsers;
 use App\Models\Ship;
 use App\Models\Treasure;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -96,5 +98,10 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('home')->with('success','utilisateur deleted successfully');
+    }
+
+    public function export(Ship $ship)
+    {
+        return Excel::download(new ExportUsers($ship), 'users.xlsx');
     }
 }
