@@ -64,3 +64,6 @@ Route::get('/register/form', [\App\Http\Controllers\Auth\RegisterController::cla
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/user/notify/{part_ship:id}', [UserController::class, 'notifyUserPartShip'])->name('users.notify');;
+

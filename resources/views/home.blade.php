@@ -24,6 +24,15 @@
                 <div class="chart-container d-flex justify-content-center" style="height : 400px; ">
                     <canvas id="chBar" class="object-fit-contain" data-parts="{{$ship->parts->toJson()}}">
                     </canvas>
+                    <div class="btn-group-vertical align right">
+                        @foreach($ship->parts as $part)
+                            @if($part->pivot->condition < 40)
+                                <div class="row mt-2">
+                                    <a class="btn btn-warning " href="{{ route('users.notify', [$part->pivot->id]) }}">Alerter Ingénieur pour : {{$part->name}} </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>

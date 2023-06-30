@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ExportUsers;
+use App\Models\PartShip;
 use App\Models\Ship;
 use App\Models\Treasure;
 use App\Models\User;
+use App\Notifications\AlertShipPart;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -14,10 +16,21 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function notifyUserPartShip(PartShip $partShip)
     {
-        //
+        $users = User::select()
+            ->where('ship_id', $partShip->ship->id)
+            ->where('specialty', config('constants.users_specialty_ingeneer'))
+            ->where('email', 'NOT LIKE', '%example%' ) //erreur à l'envoi sur les fausses addresses mail en example issue des seeders
+            ->get();
+        foreach ($users as $user){
+            $messages["partShip"] = $partShip;
+            $user->notify(new AlertShipPart($messages));
+        }
+        flash()->addSuccess("Notification envoyée");
+        return redirect()->route('home');
     }
+
     public function create(Ship $ship = null)
     {
         return view('Users.newUser')->with("ship",$ship);

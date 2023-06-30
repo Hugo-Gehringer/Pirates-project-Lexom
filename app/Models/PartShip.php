@@ -2,19 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class PartShip extends Pivot
 {
+    public function ship(): BelongsTo
+    {
+        return $this->belongsTo(Ship::class, 'ships_id');
+    }
 
-//    public function ship(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-//    {
-//        return $this->belongsTo(Ship::class);
-//    }
-//
-//    public function part()
-//    {
-//        return $this->belongsTo(Part::class);
-//    }
-
+    public function part(): BelongsTo
+    {
+        return $this->belongsTo(Part::class, 'parts_id');
+    }
 }

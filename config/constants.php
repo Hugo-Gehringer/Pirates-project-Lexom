@@ -26,6 +26,7 @@ return [
     ],
     'users_specialty_recruit' => 150,
     'users_specialty_cook' => 151,
+    'users_specialty_ingeneer' => 154,
 
     'user_type' => ['Captain', 'Sailor'],
 ]

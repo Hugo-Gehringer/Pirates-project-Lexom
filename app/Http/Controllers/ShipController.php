@@ -41,7 +41,7 @@ class ShipController extends Controller
         ]);
         $ship = Ship::create($validatedData);
         foreach ($parts as $part){
-            $ship->parts()->attach($part, ['condition'=>rand(50,100)]);
+            $ship->parts()->attach($part, ['condition'=>rand(10,100)]);
         }
     }
 

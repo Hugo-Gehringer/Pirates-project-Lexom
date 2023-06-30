@@ -24,6 +24,7 @@ class Ship extends Model
     {
         return $this->belongsToMany(Part::class, 'part_ship', 'ships_id', 'parts_id')
             ->withPivot('condition')
+            ->withPivot('id')
             ->withTimestamps();
     }
 
