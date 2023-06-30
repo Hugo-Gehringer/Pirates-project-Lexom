@@ -48,7 +48,7 @@ class TreasureController extends Controller
             'ship_id.required' => 'Veuillez choisir un navire.'
         ]);
         Treasure::create($validatedData);
-
+        flash()->addSuccess("Création réussie");
         return redirect()->route('home');
     }
 
@@ -105,6 +105,7 @@ class TreasureController extends Controller
             'ship_id.required' => 'Veuillez choisir un navire.'
         ]);
         Treasure::where('id',$treasure->id)->update($validatedData);
+        flash()->addSuccess("mise à jour réussi");
         return redirect()->route('home');
     }
 
@@ -114,7 +115,8 @@ class TreasureController extends Controller
     public function destroy(Treasure $treasure)
     {
         $treasure->delete();
-        return redirect()->route('home')->with('success','treasure deleted successfully');
+        flash()->addSuccess("Trésor supprimé");
+        return redirect()->route('home');
     }
 
     public function export(Ship $ship)

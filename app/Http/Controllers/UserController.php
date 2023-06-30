@@ -41,6 +41,7 @@ class UserController extends Controller
         ]);
         $user = User::create($validatedData)->assignRole('sailor');
         $user->save();
+        flash()->addSuccess("Création réussie");
         return redirect()->route('home');
     }
 
@@ -88,6 +89,7 @@ class UserController extends Controller
             'ship_id.required' => 'Veuillez choisir un navire.'
         ]);
         User::where('id',$user->id)->update($validatedData);
+        flash()->addSuccess("mise à jour réussi");
         return redirect()->route('home');
     }
 
@@ -97,7 +99,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('home')->with('success','utilisateur deleted successfully');
+        flash()->addSuccess("Utilisateur supprimé");
+        return redirect()->route('home');
     }
 
     public function export(Ship $ship)

@@ -40,8 +40,5 @@
         </div>
     @endif
 </div>
-@if($errors->any())
-    {!! implode('', $errors->all('<div>:message</div>')) !!}
-@endif
 <button type="submit" class="mt-3 btn btn-secondary">Confirmer</button>
 {!! Form::close() !!}

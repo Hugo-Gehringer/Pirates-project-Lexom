@@ -52,6 +52,7 @@ class RessourceController extends Controller
             'ship_id.required' => 'Veuillez choisir un navire.'
         ]);
         Ressource::create($validatedData);
+        flash()->addSuccess("Création réussie");
 
         return redirect()->route('home');
     }
@@ -105,6 +106,7 @@ class RessourceController extends Controller
             'ship_id.required' => 'Veuillez choisir un navire.'
         ]);
         Ressource::where('id',$ressource->id)->update($validated);
+        flash()->addSuccess("mise à jour réussi");
         return redirect()->route('home');
     }
 
@@ -114,6 +116,7 @@ class RessourceController extends Controller
     public function destroy(Ressource $ressource)
     {
         $ressource->delete();
+        flash()->addSuccess("ressource supprimée");
         return redirect()->route('home')->with('success','Ressource deleted successfully');
     }
 
