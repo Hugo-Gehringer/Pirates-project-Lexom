@@ -36,7 +36,7 @@
                     @captain
                         <a class="btn btn-info" href="{{ route('user.create', $ship) }}">Ajouter</a>
                     @endcaptain
-                    <a class="btn btn-warning float-end" href="{{ route('users.export', $ship) }}">Export User Data</a>
+                    <a class="btn btn-warning float-end" href="{{ route('users.export', $ship) }}">Exporter données</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-light">
@@ -89,6 +89,7 @@
                     @isCook
                         <a class="btn btn-info" href="{{ route('ressources.create') }}">Ajouter</a>
                     @endisCook
+                    <a class="btn btn-warning float-end" href="{{ route('ressources.export', $ship) }}">Exporter données</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-light">
@@ -133,6 +134,7 @@
                 <div class="card-header text-center">
                     Liste des Trésors - total : {{$ship->amountTreasure()}} Pièces d'or
                     <a class="btn btn-info" href="{{ route('treasures.create') }}">Ajouter</a>
+                    <a class="btn btn-warning float-end" href="{{ route('treasures.export', $ship) }}">Exporter données</a>
                 </div>
                 <div class="card-body">
                     <table class="table table-light">

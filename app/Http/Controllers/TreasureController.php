@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportTreasures;
 use App\Models\Ship;
 use App\Models\Treasure;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TreasureController extends Controller
 {
@@ -113,5 +115,10 @@ class TreasureController extends Controller
     {
         $treasure->delete();
         return redirect()->route('home')->with('success','treasure deleted successfully');
+    }
+
+    public function export(Ship $ship)
+    {
+        return Excel::download(new ExportTreasures($ship), 'treasures.xlsx');
     }
 }

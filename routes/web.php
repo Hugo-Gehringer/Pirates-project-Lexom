@@ -52,6 +52,8 @@ Route::post('/ship/store', [ShipController::class, 'store'])->name('ship.store')
 Route::post('/ship/update', [ShipController::class, 'update'])->name('ship.update');
 
 Route::get('/user/export/{ship:id}', [UserController::class, 'export'])->name('users.export');
+Route::get('/treasure/export/{ship:id}', [TreasureController::class, 'export'])->name('treasures.export');
+Route::get('/ressource/export/{ship:id}', [RessourceController::class, 'export'])->name('ressources.export');
 
 Auth::routes();
 

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportRessources;
 use App\Models\Ressource;
 use App\Models\Ship;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RessourceController extends Controller
 {
@@ -113,5 +115,10 @@ class RessourceController extends Controller
     {
         $ressource->delete();
         return redirect()->route('home')->with('success','Ressource deleted successfully');
+    }
+
+    public function export(Ship $ship)
+    {
+        return Excel::download(new ExportRessources($ship), 'ressources.xlsx');
     }
 }
